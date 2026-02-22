@@ -7,6 +7,7 @@ import { FoodsModule } from './foods/foods.module';
 import { MealEntriesModule } from './meal-entries/meal-entries.module';
 import { SymptomsModule } from './symptoms/symptoms.module';
 import { SymptomLogsModule } from './symptom-logs/symptom-logs.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { SymptomLogsModule } from './symptom-logs/symptom-logs.module';
     MealEntriesModule,
     SymptomsModule,
     SymptomLogsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
