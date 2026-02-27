@@ -8,14 +8,13 @@ import {
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 import { JwtAuthGuard } from './jwt-auth.guard';
-import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @UseGuards(AuthGuard('local'))
-  @Post('auth/login')
+  @UseGuards(LocalAuthGuard)
+  @Post('login')
   async login(@Request() req) {
     return this.authService.login(req.user);
   }
@@ -27,8 +26,12 @@ export class AuthController {
   }
 
   @UseGuards(LocalAuthGuard)
-  @Post('auth/logout')
+  @Post('logout')
   async logout(@Request() req) {
-    return req.logout();
+    return req.logout((err) => {
+      if (err) {
+        throw err;
+      }
+    });
   }
 }

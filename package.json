@@ -2,7 +2,14 @@
   "name": "@nest-angular/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "ng": "nx",
+    "start": "nx serve api",
+    "build": "nx build api",
+    "test": "nx test api",
+    "lint": "nx lint api",
+    "e2e": "nx e2e api-e2e"
+  },
   "private": true,
   "devDependencies": {
     "@angular-devkit/core": "~21.1.0",
@@ -27,6 +34,7 @@
     "@swc-node/register": "~1.11.1",
     "@swc/core": "~1.15.5",
     "@swc/helpers": "~0.5.18",
+    "@types/express-session": "^1.18.2",
     "@types/node": "20.19.9",
     "@types/passport-jwt": "^4.0.1",
     "@types/passport-local": "^1.0.38",
@@ -57,6 +65,7 @@
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.0",
     "axios": "^1.6.0",
+    "express-session": "^1.19.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
