@@ -1,9 +1,9 @@
-import { MealType } from "./enums";
+import { mealType } from "./enums";
 
 export interface Meal {
   id: string;
   userID: string;
   timestamp: Date;
-  mealType: MealType;
+  mealType: mealType;
   notes: string;
 }

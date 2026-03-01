@@ -5,4 +5,4 @@ export const MealType = {
   Snack: "Snack",
 } as const;
 
-export type MealType = typeof MealType[keyof typeof MealType];
+export type mealType = typeof MealType[keyof typeof MealType];
