@@ -19,7 +19,9 @@ import { MongooseModule } from '@nestjs/mongoose';
     SymptomsModule,
     SymptomLogsModule,
     AuthModule,
-    MongooseModule.forRoot('mongodb+srv://reedandj1_db_user:jEkJdugppSMa5TQi@cluster0.kb32ifu.mongodb.net/?appName=Cluster0'),
+    MongooseModule.forRoot('mongodb+srv://reedandj1_db_user:jEkJdugppSMa5TQi@cluster0.kb32ifu.mongodb.net/?appName=Cluster0', {
+      dbName: 'food-and-symptom-tracker'
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

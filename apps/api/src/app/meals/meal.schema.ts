@@ -1,5 +1,5 @@
 
-import { mealType } from '@nest-angular/interfaces';
+import { MealType, mealType } from '@nest-angular/interfaces';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
@@ -16,7 +16,7 @@ export class Meal {
   @Prop()
   timestamp: Date;
 
-  @Prop()
+  @Prop({ type: String, enum: MealType })
   mealType: mealType;
 
   @Prop()

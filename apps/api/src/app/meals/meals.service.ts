@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMealDto, MealType, UpdateMealDto } from '@nest-angular/interfaces';
-import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import { Connection, Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { Meal } from './meal.schema';
 
 const meals: Meal[] = [
@@ -23,28 +23,15 @@ const meals: Meal[] = [
 
 @Injectable()
 export class MealsService {
-  constructor(@InjectModel(Meal.name) private MealModel: Model<Meal>, @InjectConnection() private readonly connection: Connection) {}
-
-  async startTransaction() {
-    const session = await this.connection.startSession();
-    session.startTransaction();
-    // Your transaction logic here
-  }
+  constructor(@InjectModel(Meal.name) private MealModel: Model<Meal>) {}
 
   create(createMealDto: CreateMealDto) {
-    const newMeal: Meal = {
-      id: (meals.length + 1).toString(),
-      userID: "user1",
-      timestamp: new Date(),
-      mealType: createMealDto.mealType,
-      notes: createMealDto.notes
-    };
-    meals.push(newMeal);
-    return newMeal;
+    const createdMeal = new this.MealModel({ ...createMealDto });
+    return createdMeal.save();
   }
 
   findAll() {
-    return meals;
+    return this.MealModel.find().exec();
   }
 
   findOne(id: string) {

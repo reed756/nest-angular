@@ -8,8 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { MealsService } from './meals.service';
-import { CreateMealDto } from './dto/create-meal.dto';
-import { UpdateMealDto } from './dto/update-meal.dto';
+import { CreateMealDto, UpdateMealDto } from '@nest-angular/interfaces';
 
 @Controller('meals')
 export class MealsController {
@@ -27,16 +26,16 @@ export class MealsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.mealsService.findOne(+id);
+    return this.mealsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateMealDto: UpdateMealDto) {
-    return this.mealsService.update(+id, updateMealDto);
+    return this.mealsService.update(id, updateMealDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.mealsService.remove(+id);
+    return this.mealsService.remove(id);
   }
 }
