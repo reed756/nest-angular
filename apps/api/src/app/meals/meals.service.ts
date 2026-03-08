@@ -1,59 +1,32 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMealDto, MealType, UpdateMealDto } from '@nest-angular/interfaces';
+import { CreateMealDto, UpdateMealDto } from '@nest-angular/interfaces';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Meal } from './meal.schema';
 
-const meals: Meal[] = [
-  {
-    id: '1',
-    userID: "user1",
-    timestamp: new Date(),
-    mealType: MealType.Breakfast,
-    notes: "Had eggs and toast"
-  },
-  {
-    id: '2',
-    userID: "user2",
-    timestamp: new Date(),
-    mealType: MealType.Lunch,
-    notes: "Had a salad"
-  }
-]
-
 @Injectable()
 export class MealsService {
-  constructor(@InjectModel(Meal.name) private MealModel: Model<Meal>) {}
+  constructor(@InjectModel(Meal.name) private readonly MealModel: Model<Meal>) {}
 
-  create(createMealDto: CreateMealDto) {
-    const createdMeal = new this.MealModel({ ...createMealDto });
+  async create(createMealDto: CreateMealDto): Promise<Meal> {
+    const createdMeal = await this.MealModel.create(createMealDto);
     return createdMeal.save();
   }
 
-  findAll() {
+  async findAll(): Promise<Meal[]> {
     return this.MealModel.find().exec();
   }
 
-  findOne(id: string) {
-    return meals.find(meal => meal.id === id);
+  async findOne(id: string): Promise<Meal> {
+    return this.MealModel.findOne({ _id: id }).exec();
   }
 
-  update(id: string, updateMealDto: UpdateMealDto) {
-    const mealToUpdate = meals.find(meal => meal.id === id);
-    if (mealToUpdate) {
-      Object.assign(mealToUpdate, updateMealDto);
-      return mealToUpdate;
-    }
-    return null;
+  async update(id: string, updateMealDto: UpdateMealDto): Promise<Meal> {
+    return this.MealModel.findByIdAndUpdate({ _id: id }, updateMealDto, { new: true }).exec();
   }
 
-  remove(id: string) {
-    const mealToRemove = meals.find(meal => meal.id === id);
-    if (mealToRemove) {
-      const index = meals.indexOf(mealToRemove);
-      meals.splice(index, 1);
-      return mealToRemove;
-    }
-    return null;
+  async remove(id: string): Promise<Meal> {
+    const mealToDelete = await this.MealModel.findByIdAndDelete({ _id: id }).exec();
+    return mealToDelete;
   }
 }

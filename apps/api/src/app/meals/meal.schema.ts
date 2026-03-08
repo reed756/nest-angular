@@ -5,16 +5,10 @@ import { HydratedDocument } from 'mongoose';
 
 export type MealDocument = HydratedDocument<Meal>;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Meal {
-  @Prop()
-  id: string;
-
-  @Prop()
+  @Prop({ required: true })
   userID: string;
-
-  @Prop()
-  timestamp: Date;
 
   @Prop({ type: String, enum: MealType })
   mealType: mealType;

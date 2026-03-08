@@ -2,7 +2,7 @@ import { mealType } from "./enums";
 import { PartialType } from "@nestjs/mapped-types";
 
 export class CreateMealDto {
-  timestamp!: Date;
+  userID!: string;
   mealType!: mealType;
   notes!: string;
 }
