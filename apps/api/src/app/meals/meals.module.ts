@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MealsService } from './meals.service';
 import { MealsController } from './meals.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Meal, MealSchema } from './meal.schema';
+import { Meal, MealSchema } from './meals.schema';
 @Module({
   imports: [MongooseModule.forFeature([{ name: Meal.name, schema: MealSchema }])],
   controllers: [MealsController],

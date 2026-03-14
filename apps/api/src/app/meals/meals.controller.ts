@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { MealsService } from './meals.service';
 import { CreateMealDto, UpdateMealDto } from '@nest-angular/interfaces';
-import { Meal } from './meal.schema';
+import { Meal } from './meals.schema';
 
 @Controller('meals')
 export class MealsController {

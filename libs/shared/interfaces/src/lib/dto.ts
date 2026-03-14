@@ -13,3 +13,13 @@ export class UpdateMealDto extends PartialType(CreateMealDto) {
   override timeEaten?: Date;
   override notes?: string;
 }
+
+export class CreateSymptomDto {
+  name!: string;
+  category!: string;
+}
+
+export class UpdateSymptomDto extends PartialType(CreateSymptomDto) {
+  override name?: string;
+  override category?: string;
+}

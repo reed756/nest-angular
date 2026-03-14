@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
-import { CreateSymptomDto } from './dto/create-symptom.dto';
-import { UpdateSymptomDto } from './dto/update-symptom.dto';
+import { Symptom } from './symptoms.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { CreateSymptomDto, UpdateSymptomDto } from '@nest-angular/interfaces';
 
 @Injectable()
 export class SymptomsService {
-  create(createSymptomDto: CreateSymptomDto) {
-    return 'This action adds a new symptom';
+  constructor(@InjectModel(Symptom.name) private readonly SymptomModel: Model<Symptom>) {}
+
+  async create(createSymptomDto: CreateSymptomDto) {
+    const createdSymptom = await this.SymptomModel.create(createSymptomDto);
+    return createdSymptom.save();
   }
 
-  findAll() {
-    return `This action returns all symptoms`;
+  async findAll() {
+    return this.SymptomModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} symptom`;
+  async findOne(id: number) {
+    return this.SymptomModel.findOne({ _id: id }).exec();
   }
 
-  update(id: number, updateSymptomDto: UpdateSymptomDto) {
-    return `This action updates a #${id} symptom`;
+  async update(id: number, updateSymptomDto: UpdateSymptomDto) {
+    return this.SymptomModel.findByIdAndUpdate({ _id: id }, updateSymptomDto, { new: true }).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} symptom`;
+  async remove(id: number) {
+    const symptomToDelete = await this.SymptomModel.findByIdAndDelete({ _id: id }).exec();
+    return symptomToDelete;
   }
 }
