@@ -10,8 +10,11 @@ export class Meal {
   @Prop({ required: true })
   userID: string;
 
-  @Prop({ type: String, enum: MealType })
+  @Prop({ type: String, enum: MealType, required: true })
   mealType: mealType;
+
+  @Prop({ required: true })
+  timeEaten: Date;
 
   @Prop()
   notes: string;
