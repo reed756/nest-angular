@@ -1,5 +1,5 @@
 
-import { MealType, mealType } from '@nest-angular/interfaces';
+import { MealType, mealType } from '@nest-angular/shared';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema({ timestamps: true })

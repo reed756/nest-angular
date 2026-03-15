@@ -8,7 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { MealsService } from './meals.service';
-import { CreateMealDto, UpdateMealDto } from '@nest-angular/interfaces';
+import { CreateMealDto, UpdateMealDto } from '@nest-angular/shared';
 import { Meal } from './meals.schema';
 
 @Controller('meals')

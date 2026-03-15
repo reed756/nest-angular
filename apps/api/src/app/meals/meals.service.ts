@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMealDto, UpdateMealDto } from '@nest-angular/interfaces';
+import { CreateMealDto, UpdateMealDto } from '@nest-angular/shared';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Meal } from './meals.schema';

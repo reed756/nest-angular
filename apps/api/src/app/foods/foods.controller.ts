@@ -8,7 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { FoodsService } from './foods.service';
-import { CreateFoodDto, UpdateFoodDto } from '@nest-angular/interfaces';
+import { CreateFoodDto, UpdateFoodDto } from '@nest-angular/shared';
 
 @Controller('foods')
 export class FoodsController {

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Food } from './foods.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateFoodDto, UpdateFoodDto } from '@nest-angular/interfaces';
+import { CreateFoodDto, UpdateFoodDto } from '@nest-angular/shared';
 
 @Injectable()
 export class FoodsService {

@@ -8,7 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { SymptomsService } from './symptoms.service';
-import { CreateSymptomDto, UpdateSymptomDto } from '@nest-angular/interfaces';
+import { CreateSymptomDto, UpdateSymptomDto } from '@nest-angular/shared';
 
 @Controller('symptoms')
 export class SymptomsController {

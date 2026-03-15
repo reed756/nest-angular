@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Symptom } from './symptoms.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateSymptomDto, UpdateSymptomDto } from '@nest-angular/interfaces';
+import { CreateSymptomDto, UpdateSymptomDto } from '@nest-angular/shared';
 
 @Injectable()
 export class SymptomsService {

@@ -1,4 +1,4 @@
-import { FoodAllergen, foodAllergen } from "@nest-angular/interfaces";
+import { FoodAllergen, foodAllergen } from "@nest-angular/shared";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema()

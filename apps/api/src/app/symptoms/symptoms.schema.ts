@@ -1,4 +1,4 @@
-import { symptomCategory, SymptomCategory } from "@nest-angular/interfaces";
+import { symptomCategory, SymptomCategory } from "@nest-angular/shared";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema()
