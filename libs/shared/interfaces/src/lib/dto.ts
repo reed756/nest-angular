@@ -1,4 +1,4 @@
-import { mealType } from "./enums";
+import { foodAllergen, mealType } from "./enums";
 import { PartialType } from "@nestjs/mapped-types";
 
 export class CreateMealDto {
@@ -22,4 +22,14 @@ export class CreateSymptomDto {
 export class UpdateSymptomDto extends PartialType(CreateSymptomDto) {
   override name?: string;
   override category?: string;
+}
+
+export class CreateFoodDto {
+  name!: string;
+  allergens!: foodAllergen[];
+}
+
+export class UpdateFoodDto extends PartialType(CreateFoodDto) {
+  override name?: string;
+  override allergens?: foodAllergen[];
 }

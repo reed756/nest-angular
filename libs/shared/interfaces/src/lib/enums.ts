@@ -18,3 +18,15 @@ export const SymptomCategory = {
 }
 
 export type symptomCategory = typeof SymptomCategory[keyof typeof SymptomCategory];
+
+export const FoodAllergen = {
+  Milk: "Milk",
+  Eggs: "Eggs",
+  Fish: "Fish",
+  Shellfish: "Shellfish",
+  Nuts: "Nuts",
+  Gluten: "Gluten",
+  Soy: "Soy",
+}
+
+export type foodAllergen = typeof FoodAllergen[keyof typeof FoodAllergen];

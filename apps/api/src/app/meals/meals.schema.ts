@@ -1,9 +1,6 @@
 
 import { MealType, mealType } from '@nest-angular/interfaces';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
-
-export type MealDocument = HydratedDocument<Meal>;
 
 @Schema({ timestamps: true })
 export class Meal {
