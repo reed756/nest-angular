@@ -33,3 +33,8 @@ export class UpdateFoodDto extends PartialType(CreateFoodDto) {
   override name?: string;
   override allergens?: foodAllergen[];
 }
+
+export class CreateMealEntryDto {
+  mealID!: string;
+  foodID!: string;
+}
