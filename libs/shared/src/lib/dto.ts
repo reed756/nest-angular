@@ -38,3 +38,11 @@ export class CreateMealEntryDto {
   mealID!: string;
   foodID!: string;
 }
+
+export class CreateSymptomLogDto {
+  userID!: string;
+  symptomID!: string;
+  timeExperienced!: Date;
+  severity!: number;
+  notes!: string;
+}

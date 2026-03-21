@@ -1,26 +1,28 @@
+import { CreateSymptomLogDto } from '@nest-angular/shared';
 import { Injectable } from '@nestjs/common';
-import { CreateSymptomLogDto } from './dto/create-symptom-log.dto';
-import { UpdateSymptomLogDto } from './dto/update-symptom-log.dto';
+import { SymptomLog } from './symptom-logs.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class SymptomLogsService {
-  create(createSymptomLogDto: CreateSymptomLogDto) {
-    return 'This action adds a new symptomLog';
+  constructor(@InjectModel(SymptomLog.name) private readonly SymptomLogModel: Model<SymptomLog>) {}
+
+  async create(createSymptomLogDto: CreateSymptomLogDto) {
+    const createdSymptomLog = await this.SymptomLogModel.create(createSymptomLogDto);
+    return createdSymptomLog.save();
   }
 
-  findAll() {
-    return `This action returns all symptomLogs`;
+  async findAll() {
+    return this.SymptomLogModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} symptomLog`;
+  async findOne(id: number) {
+    return this.SymptomLogModel.findOne({ _id: id }).exec();
   }
 
-  update(id: number, updateSymptomLogDto: UpdateSymptomLogDto) {
-    return `This action updates a #${id} symptomLog`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} symptomLog`;
+  async remove(id: number) {
+    const symptomLogToDelete = await this.SymptomLogModel.findByIdAndDelete({ _id: id }).exec();
+    return symptomLogToDelete;
   }
 }

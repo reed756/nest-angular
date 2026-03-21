@@ -3,13 +3,11 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
 } from '@nestjs/common';
 import { SymptomLogsService } from './symptom-logs.service';
-import { CreateSymptomLogDto } from './dto/create-symptom-log.dto';
-import { UpdateSymptomLogDto } from './dto/update-symptom-log.dto';
+import { CreateSymptomLogDto } from '@nest-angular/shared';
 
 @Controller('symptom-logs')
 export class SymptomLogsController {
@@ -28,14 +26,6 @@ export class SymptomLogsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.symptomLogsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateSymptomLogDto: UpdateSymptomLogDto,
-  ) {
-    return this.symptomLogsService.update(+id, updateSymptomLogDto);
   }
 
   @Delete(':id')
