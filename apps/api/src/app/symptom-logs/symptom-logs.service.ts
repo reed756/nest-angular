@@ -8,20 +8,20 @@ import { InjectModel } from '@nestjs/mongoose';
 export class SymptomLogsService {
   constructor(@InjectModel(SymptomLog.name) private readonly SymptomLogModel: Model<SymptomLog>) {}
 
-  async create(createSymptomLogDto: CreateSymptomLogDto) {
+  async create(createSymptomLogDto: CreateSymptomLogDto): Promise<SymptomLog> {
     const createdSymptomLog = await this.SymptomLogModel.create(createSymptomLogDto);
     return createdSymptomLog.save();
   }
 
-  async findAll() {
+  async findAll(): Promise<SymptomLog[]> {
     return this.SymptomLogModel.find().exec();
   }
 
-  async findOne(id: number) {
+  async findOne(id: number): Promise<SymptomLog> {
     return this.SymptomLogModel.findOne({ _id: id }).exec();
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<SymptomLog> {
     const symptomLogToDelete = await this.SymptomLogModel.findByIdAndDelete({ _id: id }).exec();
     return symptomLogToDelete;
   }

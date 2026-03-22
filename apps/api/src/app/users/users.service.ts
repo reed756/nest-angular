@@ -1,10 +1,13 @@
+import { CreateUserDto } from '@nest-angular/shared';
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './entities/user.entity';
+import { User } from './users.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class UsersService {
+  constructor(@InjectModel(User.name) private readonly SymptomModel: Model<User>) {}
+
   private readonly users = [
     {
       userId: 1,
@@ -18,23 +21,12 @@ export class UsersService {
     },
   ];
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
-  }
-
-  findAll() {
-    return `This action returns all users`;
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const createdSymptom = await this.SymptomModel.create(createUserDto);
+    return createdSymptom.save();
   }
 
   async findOne(username: string): Promise<User | undefined> {
     return this.users.find(user => user.username === username);
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
   }
 }

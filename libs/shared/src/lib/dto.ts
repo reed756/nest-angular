@@ -46,3 +46,5 @@ export class CreateSymptomLogDto {
   severity!: number;
   notes!: string;
 }
+
+export class CreateUserDto {}
