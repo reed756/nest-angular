@@ -6,27 +6,14 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private readonly SymptomModel: Model<User>) {}
-
-  private readonly users = [
-    {
-      userId: 1,
-      username: 'john',
-      password: 'changeme',
-    },
-    {
-      userId: 2,
-      username: 'maria',
-      password: 'guess',
-    },
-  ];
+  constructor(@InjectModel(User.name) private readonly UserModel: Model<User>) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const createdSymptom = await this.SymptomModel.create(createUserDto);
+    const createdSymptom = await this.UserModel.create(createUserDto);
     return createdSymptom.save();
   }
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find(user => user.username === username);
+  async findOne(id: number): Promise<User | undefined> {
+    return this.UserModel.findOne({ _id: id }).exec();
   }
 }

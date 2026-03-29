@@ -1,4 +1,3 @@
-
 import { MealType, mealType } from '@nest-angular/shared';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
