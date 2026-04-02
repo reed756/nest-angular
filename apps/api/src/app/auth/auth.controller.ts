@@ -26,6 +26,7 @@ export class AuthController {
     return req.user;
   }
 
+  @Public()
   @UseGuards(LocalAuthGuard)
   @Post('logout')
   async logout(@Request() req) {

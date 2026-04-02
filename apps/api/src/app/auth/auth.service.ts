@@ -7,8 +7,8 @@ import { User, UserDocument } from '../users/users.schema';
 export class AuthService {
   constructor(private usersService: UsersService, private jwtService: JwtService) {}
 
-  async validateUser(id: number, pass: string): Promise<User | null> {
-    const user = await this.usersService.findOne(id);
+  async validateUser(username: string, pass: string): Promise<User | null> {
+    const user = await this.usersService.findOne(username);
     if (user && user.password === pass) {
       return user;
     }

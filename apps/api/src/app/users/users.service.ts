@@ -13,7 +13,7 @@ export class UsersService {
     return createdSymptom.save();
   }
 
-  async findOne(id: number): Promise<User | undefined> {
-    return this.UserModel.findOne({ _id: id }).exec();
+  async findOne(username: string): Promise<User | undefined> {
+    return this.UserModel.findOne({ username }).exec();
   }
 }
