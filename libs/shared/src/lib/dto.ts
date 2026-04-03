@@ -47,4 +47,19 @@ export class CreateSymptomLogDto {
   notes!: string;
 }
 
-export class CreateUserDto {}
+export class CreateUserDto {
+  username!: string;
+  email!: string;
+  password!: string;
+}
+
+export class SignUpDto {
+  username!: string;
+  email!: string;
+  password!: string;
+}
+
+export class LoginDto {
+  email!: string;
+  password!: string;
+}

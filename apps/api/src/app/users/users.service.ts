@@ -1,5 +1,5 @@
 import { CreateUserDto } from '@nest-angular/shared';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from './users.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -9,11 +9,13 @@ export class UsersService {
   constructor(@InjectModel(User.name) private readonly UserModel: Model<User>) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const createdSymptom = await this.UserModel.create(createUserDto);
-    return createdSymptom.save();
+    const createdUser = await this.UserModel.create(createUserDto);
+    return createdUser.save();
   }
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.UserModel.findOne({ username }).exec();
+  async findOne(id: number): Promise<User | undefined> {
+    const user = await this.UserModel.findById(id);
+    if (!user) throw new NotFoundException('could not find the user');
+    return user;
   }
 }
