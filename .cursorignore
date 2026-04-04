@@ -1,0 +1,6 @@
+# .cursorignore
+.nx/
+dist/
+tmp/
+node_modules/
+*.log
