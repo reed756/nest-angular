@@ -10,6 +10,8 @@ import { SymptomLogsModule } from './symptom-logs/symptom-logs.module';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { APP_FILTER } from '@nestjs/core';
+import { CatchEverythingFilter } from './exception.filter';
 
 @Module({
   imports: [
@@ -26,6 +28,9 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot()
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, {
+    provide: APP_FILTER,
+    useClass: CatchEverythingFilter,
+  },],
 })
 export class AppModule {}
