@@ -47,6 +47,7 @@ export class AuthService {
       { id: user.id },
       {
         secret: this.configService.get('JWT_SECRET'),
+        expiresIn: this.configService.get('JWT_EXPIRES'),
       },
     );
     return { token };

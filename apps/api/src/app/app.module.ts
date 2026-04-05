@@ -15,6 +15,10 @@ import { CatchEverythingFilter } from './exception.filter';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
     UsersModule,
     MealsModule,
     FoodsModule,
@@ -25,12 +29,14 @@ import { CatchEverythingFilter } from './exception.filter';
     MongooseModule.forRoot('mongodb+srv://reedandj1_db_user:jEkJdugppSMa5TQi@cluster0.kb32ifu.mongodb.net/?appName=Cluster0', {
       dbName: 'food-and-symptom-tracker'
     }),
-    ConfigModule.forRoot()
   ],
   controllers: [AppController],
-  providers: [AppService, {
-    provide: APP_FILTER,
-    useClass: CatchEverythingFilter,
-  },],
+  providers: [
+    AppService,
+    {
+      provide: APP_FILTER,
+      useClass: CatchEverythingFilter,
+    },
+  ],
 })
 export class AppModule {}

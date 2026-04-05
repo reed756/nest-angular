@@ -3,7 +3,6 @@ import { SymptomsService } from './symptoms.service';
 import { SymptomsController } from './symptoms.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Symptom, SymptomSchema } from './symptoms.schema';
-// import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: Symptom.name, schema: SymptomSchema }])],
