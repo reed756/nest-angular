@@ -1,4 +1,16 @@
 {
   "version": "0.2.0",
-  "configurations": []
+  "configurations": [
+    {
+      "name": "Debug Nest App",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["nx", "serve", "api"],
+      "args": ["--args='--inspect=9229'"],
+      "console": "integratedTerminal",
+      "restart": true,
+      "sourceMaps": true
+    }
+  ]
 }

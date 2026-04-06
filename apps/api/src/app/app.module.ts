@@ -26,8 +26,8 @@ import { CatchEverythingFilter } from './exception.filter';
     SymptomsModule,
     SymptomLogsModule,
     AuthModule,
-    MongooseModule.forRoot('mongodb+srv://reedandj1_db_user:jEkJdugppSMa5TQi@cluster0.kb32ifu.mongodb.net/?appName=Cluster0', {
-      dbName: 'food-and-symptom-tracker'
+    MongooseModule.forRoot(process.env.MONGO_URI, {
+      dbName: process.env.DB_NAME
     }),
   ],
   controllers: [AppController],
