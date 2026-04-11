@@ -13,8 +13,18 @@ export class MealsService {
     return createdMeal.save();
   }
 
-  async findAll(): Promise<Meal[]> {
-    return this.MealModel.find().exec();
+  async findAll(userID: string, date: Date): Promise<Meal[]> {
+    const day = date.getDay();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+    return this.MealModel.find({
+      userID,
+      timeEaten: {
+        "$gte": `${day} ${month} ${year} 00:00:00 GMT`,
+        "$lt": `${day} ${month} ${year} 23:59:59 GMT`
+      }
+    }).exec();
   }
 
   async findOne(id: string): Promise<Meal> {

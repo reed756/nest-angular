@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query
 } from '@nestjs/common';
 import { MealsService } from './meals.service';
 import { CreateMealDto, UpdateMealDto } from '@nest-angular/shared';
@@ -21,8 +22,8 @@ export class MealsController {
   }
 
   @Get()
-  async findAll(): Promise<Meal[]> {
-    return this.mealsService.findAll();
+  async findAll(@Query('userID') userID: string, @Query('date') date: Date): Promise<Meal[]> {
+    return this.mealsService.findAll(userID, date);
   }
 
   @Get(':id')
