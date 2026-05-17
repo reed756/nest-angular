@@ -17,15 +17,15 @@ export class FoodsService {
     return this.FoodModel.find().exec();
   }
 
-  async findOne(id: number): Promise<Food> {
+  async findOne(id: number): Promise<Food | null> {
     return this.FoodModel.findOne({ _id: id }).exec();
   }
 
-  async update(id: number, updateFoodDto: UpdateFoodDto): Promise<Food> {
+  async update(id: number, updateFoodDto: UpdateFoodDto): Promise<Food | null> {
     return this.FoodModel.findByIdAndUpdate({ _id: id }, updateFoodDto, { new: true }).exec();
   }
 
-  async remove(id: number): Promise<Food> {
+  async remove(id: number): Promise<Food | null> {
     const foodToDelete = await this.FoodModel.findByIdAndDelete({ _id: id }).exec();
     return foodToDelete;
   }

@@ -8,24 +8,24 @@ import { CreateSymptomDto, UpdateSymptomDto } from '@nest-angular/shared';
 export class SymptomsService {
   constructor(@InjectModel(Symptom.name) private readonly SymptomModel: Model<Symptom>) {}
 
-  async create(createSymptomDto: CreateSymptomDto) {
+  async create(createSymptomDto: CreateSymptomDto): Promise<Symptom> {
     const createdSymptom = await this.SymptomModel.create(createSymptomDto);
     return createdSymptom.save();
   }
 
-  async findAll() {
+  async findAll(): Promise<Symptom[]> {
     return this.SymptomModel.find().exec();
   }
 
-  async findOne(id: number) {
+  async findOne(id: number): Promise<Symptom | null> {
     return this.SymptomModel.findOne({ _id: id }).exec();
   }
 
-  async update(id: number, updateSymptomDto: UpdateSymptomDto) {
+  async update(id: number, updateSymptomDto: UpdateSymptomDto): Promise<Symptom | null> {
     return this.SymptomModel.findByIdAndUpdate({ _id: id }, updateSymptomDto, { new: true }).exec();
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<Symptom | null> {
     const symptomToDelete = await this.SymptomModel.findByIdAndDelete({ _id: id }).exec();
     return symptomToDelete;
   }

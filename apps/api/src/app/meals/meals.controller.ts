@@ -27,7 +27,7 @@ export class MealsController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Meal> {
+  async findOne(@Param('id') id: string): Promise<Meal | null> {
     return this.mealsService.findOne(id);
   }
 

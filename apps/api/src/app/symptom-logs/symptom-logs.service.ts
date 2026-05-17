@@ -17,11 +17,11 @@ export class SymptomLogsService {
     return this.SymptomLogModel.find().exec();
   }
 
-  async findOne(id: number): Promise<SymptomLog> {
+  async findOne(id: number): Promise<SymptomLog | null> {
     return this.SymptomLogModel.findOne({ _id: id }).exec();
   }
 
-  async remove(id: number): Promise<SymptomLog> {
+  async remove(id: number): Promise<SymptomLog | null> {
     const symptomLogToDelete = await this.SymptomLogModel.findByIdAndDelete({ _id: id }).exec();
     return symptomLogToDelete;
   }

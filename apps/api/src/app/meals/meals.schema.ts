@@ -4,16 +4,19 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @Schema({ timestamps: true })
 export class Meal {
   @Prop({ required: true })
-  userID: string;
+  userID!: string;
 
   @Prop({ type: String, enum: MealType, required: true })
-  mealType: mealType;
+  mealType!: mealType;
 
   @Prop({ required: true })
-  timeEaten: Date;
+  timeEaten!: Date;
+
+  @Prop({ type: [{ foodID: String }] })
+  foods!: { foodID: string }[];
 
   @Prop()
-  notes: string;
+  notes!: string;
 }
 
 export const MealSchema = SchemaFactory.createForClass(Meal);

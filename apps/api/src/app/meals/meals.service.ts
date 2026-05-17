@@ -27,15 +27,15 @@ export class MealsService {
     }).exec();
   }
 
-  async findOne(id: string): Promise<Meal> {
+  async findOne(id: string): Promise<Meal | null> {
     return this.MealModel.findOne({ _id: id }).exec();
   }
 
-  async update(id: string, updateMealDto: UpdateMealDto): Promise<Meal> {
+  async update(id: string, updateMealDto: UpdateMealDto): Promise<Meal | null> {
     return this.MealModel.findByIdAndUpdate({ _id: id }, updateMealDto, { new: true }).exec();
   }
 
-  async remove(id: string): Promise<Meal> {
+  async remove(id: string): Promise<Meal | null> {
     const mealToDelete = await this.MealModel.findByIdAndDelete({ _id: id }).exec();
     return mealToDelete;
   }

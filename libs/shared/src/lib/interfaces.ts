@@ -5,6 +5,7 @@ export interface Meal {
   userID: string;
   timeEaten: Date;
   mealType: mealType;
+  foods: { foodID: string; quantity: number }[];
   notes: string;
 }
 
