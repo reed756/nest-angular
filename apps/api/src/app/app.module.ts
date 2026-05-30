@@ -12,8 +12,6 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
 import { CatchEverythingFilter } from './exception.filter';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { DashboardController } from './dashboard/dashboard.controller';
-import { DashboardService } from './dashboard/dashboard.service';
 
 @Module({
   imports: [
@@ -27,19 +25,18 @@ import { DashboardService } from './dashboard/dashboard.service';
     SymptomsModule,
     SymptomLogsModule,
     AuthModule,
+    DashboardModule,
     MongooseModule.forRoot(process.env.MONGO_URI ?? '', {
       dbName: process.env.DB_NAME,
     }),
-    DashboardModule,
   ],
-  controllers: [AppController, DashboardController],
+  controllers: [AppController],
   providers: [
     AppService,
     {
       provide: APP_FILTER,
       useClass: CatchEverythingFilter,
     },
-    DashboardService,
   ],
 })
 export class AppModule {}
